@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SalesConsultant } from '../classes/sales-consultant'
+import { Poc } from '../classes/poc'
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
@@ -8,20 +8,35 @@ import { SalesConsultant } from '../classes/sales-consultant'
 export class ListComponent implements OnInit {
 
   
-  SALES_CONSULTANTS: SalesConsultant[] = [
+    POCS: Poc[] = [
     {
-      nome: 'Davi Piala dos Santos',
-      email: 'davi.piala@oracle.com'
+      codigoOpp: 'BKL11',
+      valorOpp: 12000,
+      dataAbertura: null,
+      dataFechamento: null,
+      sponsor: 'Um Sponsor Qualquer',
+      vendedor: 'Guilherme Borges',
+      manager: 'Lenadro Vieira',
+      arquiteto: null,
+      salesConsultants: null
+  
     },
     {
-      nome: 'Fernando Costa',
-      email: 'fernando.d.costa'
+      codigoOpp: 'BKL11',
+      valorOpp: 12000,
+      dataAbertura: null,
+      dataFechamento: null,
+      sponsor: 'Um Sponsor Qualquer',
+      vendedor: 'Guilherme Borges',
+      manager: 'Lenadro Vieira',
+      arquiteto: null,
+      salesConsultants: null
     }];
-    public selectOptions: SalesConsultant[];
+  public selectOptions: Poc[];
   constructor() { }
 
   ngOnInit() {
-    this.selectOptions = this.SALES_CONSULTANTS;
+    this.selectOptions = this.POCS;
   }
 
 }

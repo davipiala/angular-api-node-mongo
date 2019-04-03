@@ -1,0 +1,44 @@
+<!-- Editable table -->
+<div class="card">
+    <h3 class="card-header text-center font-weight-bold text-uppercase py-4">POCS</h3>
+    <div class="card-body">
+      <div id="table" class="table-editable">
+        <span class="table-add float-right mb-3 mr-2">
+          <a class="text-success" (click)="add()">
+          </a>
+        </span>
+        <table class="table table-bordered table-responsive-md table-striped text-center">
+          <tr>
+            <th class="text-center">Oportunidade</th>
+            <th class="text-center">Valor</th>
+          </tr>
+          <tr *ngFor="let poc of selectOptions; let id = index">
+            <td>
+              <span contenteditable="true">{{poc.codigoOpp}}</span>
+            </td>
+            <td>
+              <span contenteditable="true">{{poc.valorOpp}}</span>
+            </td>
+            <td>
+              <span class="table-up">
+                <a class="indigo-text">
+                </a>
+              </span>
+              <span class="table-down">
+                <a class="indigo-text">
+
+                </a>
+              </span>
+            </td>
+            <td>
+              <span class="table-remove">
+                <button type="button" mdbBtn color="danger" rounded="true" size="sm" class="my-0" (click)="remove(id)">Remove</button>
+              </span>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+  <!-- Editable table -->
+  

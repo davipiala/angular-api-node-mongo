@@ -15,7 +15,7 @@ export class FormComponent implements OnInit {
     },
     {
       nome: 'Fernando Costa',
-      email: 'fernando.d.costa'
+      email: 'fernando.d.costa@oracle.com'
     }];
   public selectOptions: SalesConsultant[];
   constructor() { }

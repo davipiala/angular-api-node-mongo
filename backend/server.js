@@ -10,29 +10,24 @@ var db
 app.use(bodyParser.urlencoded({ extended: true }))
 
 
-MongoClient.connect('mongodb://@localhost:27017/mongo', (err, client) => {
+MongoClient.connect('mongodb://mongoadmin:secret@localhost:27017', (err, client) => {
   if (err) return console.log(err)
-  db = client.db('mongo')
+  db = client.db('pocs')
   app.listen(3000, function() {
     console.log('Rodando na porta 3000')
   })
 })
 
 
-app.get('/', (req, res) => {
-
-    db.collection('data').find().toArray(function(err, results) {
+app.get('/pocs/pocs', (req, res) => {
+    db.collection('pocs').find().toArray(function(err, results) {
         res.send(results)
       })
-      
-      
-    
 })
   
-
-app.post('/', (req, res) => {
+app.post('/salesconsultants', (req, res) => {
     console.log('POST')
-    db.collection('data').save(req.body, (err, result) => {
+    db.collection('salesconsultants').save(req.body, (err, result) => {
         console.log('Salvando no banco')
     })
     res.redirect('/')
