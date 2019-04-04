@@ -11,18 +11,22 @@ import { map, catchError, tap } from 'rxjs/operators';
 export class SalesConsultantsService {
 
 
-  endpoint = 'http://localhost:3000/pocs/';
+  endpoint = 'http://localhost:4200/api/';
   httpOptions = { headers: new HttpHeaders({ 'Content-Type':  'application/json'})};
 
 
   constructor(private http: HttpClient) {}
 
-  public load():Observable<any>{
-    return this.http.get(this.endpoint + 'pocs').pipe(map(this.extractData));
-    
-  }
-  public getSC(id:number){
+  public load():Observable<SalesConsultant[]>{
+    return this.http.get<SalesConsultant[]>(this.endpoint + 'scs');
+  };
 
+
+
+    
+  
+  public getSC(id:number):Observable<any>{
+    return this.http.get(this.endpoint + '/scs').pipe(map(this.extractData));
   }
   public add(sc:SalesConsultant){
     

@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { SalesConsultant } from '../classes/sales-consultant'
+import { SalesConsultantsService } from '../services/sales-consultants.service';
+import { Observable } from 'rxjs/internal/Observable';
 
 @Component({
   selector: 'app-form',
@@ -8,20 +10,23 @@ import { SalesConsultant } from '../classes/sales-consultant'
 })
 export class FormComponent implements OnInit {
 
-  SALES_CONSULTANTS: SalesConsultant[] = [
-    {
-      nome: 'Davi Piala dos Santos',
-      email: 'davi.piala@oracle.com'
-    },
-    {
-      nome: 'Fernando Costa',
-      email: 'fernando.d.costa@oracle.com'
-    }];
+  
+  
+
   public selectOptions: SalesConsultant[];
-  constructor() { }
 
+  constructor(private service:SalesConsultantsService) {
+    
+   }
+  
   ngOnInit() {
-    this.selectOptions = this.SALES_CONSULTANTS;
-  }
-
+    this.service.load().subscribe(response =>
+    {
+      this.selectOptions = response.map<SalesConsultant>(item =>
+        { return new SalesConsultant(
+            item.nome,
+            item.email);
+        });
+      });
+   }
 }

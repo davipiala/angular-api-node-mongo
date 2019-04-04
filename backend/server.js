@@ -18,12 +18,26 @@ MongoClient.connect('mongodb://mongoadmin:secret@localhost:27017', (err, client)
   })
 })
 
-
-app.get('/pocs/pocs', (req, res) => {
+app.get('/api/pocs', (req, res) => {
     db.collection('pocs').find().toArray(function(err, results) {
         res.send(results)
       })
 })
+
+app.get('/api/scs', (req, res) => {
+    db.collection('scs').find().toArray(function(err, results) {
+        res.send(results)
+      })
+})
+
+
+app.get('/api/arquitetos', (req, res) => {
+    db.collection('arquitetos').find().toArray(function(err, results) {
+        res.send(results)
+      })
+})
+
+
   
 app.post('/salesconsultants', (req, res) => {
     console.log('POST')
