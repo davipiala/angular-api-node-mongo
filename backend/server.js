@@ -1,49 +1,43 @@
-console.log('Inicalizando o NodeJS')
-
 const express = require('express');
+const bodyParser = require('body-parser');
+
 const app = express();
-const MongoClient = require('mongodb').MongoClient
-const bodyParser = require('body-parser')
 
-var db
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
-app.use(bodyParser.urlencoded({ extended: true }))
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE, OPTIONS");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+  });
 
+const config = require('./config/config.js');
+const mongoose = require('mongoose');
 
-MongoClient.connect('mongodb://mongoadmin:secret@localhost:27017', (err, client) => {
-  if (err) return console.log(err)
-  db = client.db('pocs')
-  app.listen(3000, function() {
-    console.log('Rodando na porta 3000')
-  })
-})
+require('./routes/arquiteto.routes')(app);
+require('./routes/poc.route')(app);
+require('./routes/sc.routesroutes')(app);
 
-app.get('/api/pocs', (req, res) => {
-    db.collection('pocs').find().toArray(function(err, results) {
-        res.send(results)
-      })
-})
+mongoose.Promise = global.Promise;
 
-app.get('/api/scs', (req, res) => {
-    db.collection('scs').find().toArray(function(err, results) {
-        res.send(results)
-      })
-})
-
-
-app.get('/api/arquitetos', (req, res) => {
-    db.collection('arquitetos').find().toArray(function(err, results) {
-        res.send(results)
-      })
-})
+mongoose.connect(config.url, {
+    useNewUrlParser: true
+}).then(() => {
+    console.log("Successfully connected to the database");    
+}).catch(err => {
+    console.log('Could not connect to the database. Exiting now...', err);
+    process.exit();
+});
 
 
-  
-app.post('/salesconsultants', (req, res) => {
-    console.log('POST')
-    db.collection('salesconsultants').save(req.body, (err, result) => {
-        console.log('Salvando no banco')
-    })
-    res.redirect('/')
-    
-})
+app.get('/', (req, res) => {
+    res.json({"message": "Backend Ativo"});
+});
+
+
+app.listen(config.serverport, () => {
+    console.log("Server is listening on port 3000");
+});
+

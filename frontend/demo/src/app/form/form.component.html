@@ -2,8 +2,13 @@
 
   <p class="h4 mb-4">Cadastrar POC's</p>
   <input type="text" id="defaultContactFormName" class="form-control mb-4" placeholder="Codigo da Oportunidade">
-  <input type="email" id="defaultContactFormEmail" class="form-control mb-4" placeholder="Descricao de Oportunidade">
-  <input type="text" id="defaultContactFormEmail" class="form-control mb-4" placeholder="Nome do Arquiteto">
+  
+  
+  <label>Arquiteto</label>
+  <select class="browser-default custom-select mb-4">
+    <option *ngFor="let option of selectOptions" [value]="option.nome">{{option.nome}}</option>
+  </select>
+
   <label>Sales Consultant</label>
   <select class="browser-default custom-select mb-4">
     <option *ngFor="let option of selectOptions" [value]="option.nome">{{option.nome}}</option>
