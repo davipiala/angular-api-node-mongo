@@ -17,6 +17,22 @@ import {
   MatIconModule,
   MatCardModule
 } from '@angular/material';
+import { ArquitetoComponent } from './arquiteto/arquiteto/arquiteto.component';
+import { ArquitetoFormComponent } from './arquiteto/arquiteto-form/arquiteto-form.component';
+import { ScComponent } from './sc/sc/sc.component';
+import { ScFormComponent } from './sc/sc-form/sc-form.component';
+
+import { Routes, RouterModule } from '@angular/router';
+import { SalesConsultant } from './classes/sales-consultant';
+
+
+const routes: Routes = [
+  { path: 'pocs', component: ListComponent },
+  { path: 'arquiteto', component: ArquitetoComponent },
+  { path: 'sc', component: ScComponent }
+];
+
+
 
 
 @NgModule({
@@ -27,7 +43,11 @@ import {
     FooterComponent,
     BodyComponent,
     FormComponent,
-    ListComponent
+    ListComponent,
+    ArquitetoComponent,
+    ArquitetoFormComponent,
+    ScComponent,
+    ScFormComponent
 
   ],
   imports: [
@@ -39,14 +59,16 @@ import {
     MatToolbarModule,
     MatIconModule,
     MatCardModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule.forChild(routes)
   ],
   exports: [
     MatButtonModule,
     MatMenuModule,
     MatToolbarModule,
     MatIconModule,
-    MatCardModule
+    MatCardModule,
+    RouterModule
   ],
   providers: [],
   bootstrap: [AppComponent]

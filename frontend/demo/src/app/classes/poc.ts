@@ -1,5 +1,6 @@
 import { SalesConsultant } from './sales-consultant'
 import { Arquiteto } from './arquiteto'
+import { Note } from './note'
 export class Poc {
 
     public codigoOpp:string;
@@ -10,5 +11,6 @@ export class Poc {
     public vendedor:string;
     public manager:string;
     public arquiteto:Arquiteto;
-    public salesConsultants:SalesConsultant[];
+    public scs:SalesConsultant[];
+    public notes:Note[];
 }

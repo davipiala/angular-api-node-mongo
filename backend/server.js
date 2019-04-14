@@ -18,10 +18,20 @@ const mongoose = require('mongoose');
 
 require('./routes/arquiteto.routes')(app);
 require('./routes/poc.route')(app);
-require('./routes/sc.routesroutes')(app);
+require('./routes/sc.routes')(app);
 
 mongoose.Promise = global.Promise;
 
+
+
+mongoose.connect('mongodb://davi:piala@localhost:27017/pocs', {useNewUrlParser: true}).then(() => {
+    console.log("Successfully connected to the database");    
+}).catch(err => {
+    console.log('Could not connect to the database. Exiting now...', err);
+    process.exit();
+});
+
+/*
 mongoose.connect(config.url, {
     useNewUrlParser: true
 }).then(() => {
@@ -30,7 +40,7 @@ mongoose.connect(config.url, {
     console.log('Could not connect to the database. Exiting now...', err);
     process.exit();
 });
-
+*/
 
 app.get('/', (req, res) => {
     res.json({"message": "Backend Ativo"});

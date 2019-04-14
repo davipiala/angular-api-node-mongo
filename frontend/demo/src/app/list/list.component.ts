@@ -18,7 +18,8 @@ export class ListComponent implements OnInit {
       vendedor: 'Guilherme Borges',
       manager: 'Lenadro Vieira',
       arquiteto: null,
-      salesConsultants: null
+      scs: null,
+      notes: null
   
     },
     {
@@ -30,7 +31,8 @@ export class ListComponent implements OnInit {
       vendedor: 'Guilherme Borges',
       manager: 'Lenadro Vieira',
       arquiteto: null,
-      salesConsultants: null
+      scs: null,
+      notes: null
     }];
   public selectOptions: Poc[];
   constructor() { }
